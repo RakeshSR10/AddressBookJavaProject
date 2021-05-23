@@ -185,10 +185,12 @@ public class AddressBook {
     private static int bookNumber = 0;
     private static String firstName,lastName,address,city,state,zip,phone,email;
     public static ArrayList<MultipleAddressBook> addressBookDetails=new ArrayList<>();
-    //UC 8
+    //UC 9
     public static Map<String, String> dictionaryCity=new HashMap<>();
     public static Map<String, String> dictionaryState=new HashMap<>();
-
+    //UC 10
+    public static List<String> cityCount = new ArrayList<>();
+    public static List<String> stateCount = new ArrayList<>();
     public static void addAddressBookDetails() {
         System.out.print("Enter Name of Address Book = ");
         String name = scanner.next();
@@ -214,6 +216,8 @@ public class AddressBook {
         System.out.println("2: Search By State Name");
         System.out.println("3: View Person in City");
         System.out.println("4: View Person in State");
+        System.out.println("5: By Counting Total Persons in City");
+        System.out.println("6: By Counting Total Persons in State");
         String choose=scanner.next();
         switch (choose) {
             case "1" :
@@ -228,10 +232,17 @@ public class AddressBook {
             case "4" :
                 viewPersonByStateInDict();
                 break;
+            case "5" :
+                setPersonCityCount();
+                break;
+            case "6" :
+                setPersonStateCount();
+                break;
             default :
                 System.out.println("Invalid Input....!Try Again..");
         }
     }
+
     //UC 8 - Refactor : By using Stream functions
     public static void searchPersonByCity() {
 
@@ -251,6 +262,7 @@ public class AddressBook {
                 .filter(contact -> contact.getCity().equals(city))
                 .forEach(System.out::println));
     }
+
     //UC 9 - View persons by City or State
     private static void viewPersonByCityInDict() {
         System.out.println("Enter City Name");
@@ -272,6 +284,25 @@ public class AddressBook {
                 .forEach(contact -> dictionaryState.put((contact.getFirstName() + " " + contact.getLastName()), contact.getState())));
 
         dictionaryState.forEach((key, value) -> System.out.println("Name "+key));
+    }
+
+    //UC 10 - Get Number of contact persons by count City or State
+    public static void setPersonCityCount() {
+        addressBook.forEach(address -> address.list
+                .forEach(contact -> cityCount.add(contact.getCity())));
+
+        cityCount.stream().distinct()
+                .forEach(placeName -> System.out.println("Number of People from " + placeName + " is : " + cityCount.stream()
+                        .filter(n1 -> n1.equals(placeName)).count()));
+    }
+
+    public static void setPersonStateCount() {
+        addressBook.forEach(address -> address.list
+                .forEach(contact -> stateCount.add(contact.getState())));
+
+        stateCount.stream().distinct()
+                .forEach(placeName -> System.out.println("Number of People from " + placeName + " is : " + stateCount.stream()
+                        .filter(n1 -> n1.equals(placeName)).count()));
     }
     //Refactor code and Select Option.
     public static void selectOption() {
