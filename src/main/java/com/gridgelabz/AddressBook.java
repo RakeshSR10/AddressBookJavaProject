@@ -220,6 +220,9 @@ public class AddressBook {
         System.out.println("5: By Counting Total Persons in City");
         System.out.println("6: By Counting Total Persons in State");
         System.out.println("7: Sort Persons by Alphabetically.");
+        System.out.println("8: Sort Persons by State or City or Zip.");
+        System.out.println("9: Sort Persons by State or City or Zip.");
+        System.out.println("10: Sort Persons by State or City or Zip.");
         String choose=scanner.next();
         switch (choose) {
             case "1" :
@@ -242,6 +245,13 @@ public class AddressBook {
                 break;
             case "7" :
                 sortPersonByAlphabetically();
+                break;
+            case "8" :
+                sortPersonByState();
+            case "9" :
+                sortPersonByCity();
+            case "10" :
+                sortPersonByZip();
                 break;
             default :
                 System.out.println("Invalid Input....!Try Again..");
@@ -315,6 +325,26 @@ public class AddressBook {
                 .sorted(Comparator.comparing(AddressBook::getFirstName))
                 .collect(Collectors.toList());
         sortedName.forEach(System.out::println);
+    }
+
+    //UC 12 - Sort Persons Name By City, state and Zip
+    public static void sortPersonByState() {
+        List<AddressBook> sortedState = addressBook.stream()
+                .sorted(Comparator.comparing(AddressBook::getState))
+                .collect(Collectors.toList());
+        sortedState.forEach(System.out::println);
+    }
+    public static void sortPersonByCity() {
+        List<AddressBook> sortedCity = addressBook.stream()
+                .sorted(Comparator.comparing(AddressBook::getCity))
+                .collect(Collectors.toList());
+        sortedCity.forEach(System.out::println);
+    }
+    public static void sortPersonByZip() {
+        List<AddressBook> sortedZip = addressBook.stream()
+                .sorted(Comparator.comparing(AddressBook::getZip))
+                .collect(Collectors.toList());
+        sortedZip.forEach(System.out::println);
     }
     //Refactor code and Select Option.
     public static void selectOption() {
