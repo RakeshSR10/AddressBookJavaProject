@@ -1,0 +1,2 @@
+AddressBookData{firstName='Rakesh', lastName='SR', address='Siddanuru', city='Davanagere', state='Karnataka', phoneNumber='9874563210', zip='123456', email='rakesh@gmail.com'}
+AddressBookData{firstName='Vishnu', lastName='Dada', address='Mysore-Area', city='Mysore', state='Karnataka', phoneNumber='9856471230', zip='221133', email='vishnu@gmail.com'}

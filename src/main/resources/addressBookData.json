@@ -1,0 +1,26 @@
+[
+  {
+    "Contact" : {
+      "firstName" : "Rakesh",
+      "lastName" : "SR",
+      "address" : "Siddanuru",
+      "city" : "Davanagere",
+      "state" : "Karnataka",
+      "phoneNumber" : "98745633210",
+      "zip" : "110022",
+      "email" : "raki@gmail.com"
+    }
+  },
+  {
+    "Contact" : {
+      "firstName" : "Pradeep",
+      "lastName" : "LM",
+      "address" : "Jankal",
+      "city" : "Chitradurga",
+      "state" : "Karnataka",
+      "phoneNumber" : "9953671403",
+      "zip" : "12361",
+      "email" : "pradi@gmail.com"
+    }
+  }
+]
