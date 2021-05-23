@@ -25,7 +25,7 @@ class Contact {
         this.email = email;
     }
     //getter and setter method
-    public static String getFirstName() {
+    public String getFirstName() {
         return this.firstName;
     }
 
@@ -243,16 +243,6 @@ public class AddressBook {
             case "6" :
                 setPersonStateCount();
                 break;
-            case "7" :
-                sortPersonByAlphabetically();
-                break;
-            case "8" :
-                sortPersonByState();
-            case "9" :
-                sortPersonByCity();
-            case "10" :
-                sortPersonByZip();
-                break;
             default :
                 System.out.println("Invalid Input....!Try Again..");
         }
@@ -319,33 +309,7 @@ public class AddressBook {
                 .forEach(placeName -> System.out.println("Number of People from " + placeName + " is : " + stateCount.stream()
                         .filter(n1 -> n1.equals(placeName)).count()));
     }
-    //UC 11 - Sort Persons Name By Alphabetically
-    public static void sortPersonByAlphabetically() {
-        List<AddressBook> sortedName = addressBook.stream()
-                .sorted(Comparator.comparing(AddressBook::getFirstName))
-                .collect(Collectors.toList());
-        sortedName.forEach(System.out::println);
-    }
 
-    //UC 12 - Sort Persons Name By City, state and Zip
-    public static void sortPersonByState() {
-        List<AddressBook> sortedState = addressBook.stream()
-                .sorted(Comparator.comparing(AddressBook::getState))
-                .collect(Collectors.toList());
-        sortedState.forEach(System.out::println);
-    }
-    public static void sortPersonByCity() {
-        List<AddressBook> sortedCity = addressBook.stream()
-                .sorted(Comparator.comparing(AddressBook::getCity))
-                .collect(Collectors.toList());
-        sortedCity.forEach(System.out::println);
-    }
-    public static void sortPersonByZip() {
-        List<AddressBook> sortedZip = addressBook.stream()
-                .sorted(Comparator.comparing(AddressBook::getZip))
-                .collect(Collectors.toList());
-        sortedZip.forEach(System.out::println);
-    }
     //Refactor code and Select Option.
     public static void selectOption() {
         String check = "y";
