@@ -86,7 +86,7 @@ class MultipleAddressBook {
     public String firstName, lastName, address, city, state, email, zip, phone;
     public Scanner input = new Scanner(System.in);
 
-    //UC 5 - MultipleAddressBook
+    //UC 6 - MultipleAddressBook
     public MultipleAddressBook(String addressBookName) {
         this.addressBookName = addressBookName;
     }
@@ -102,7 +102,7 @@ class MultipleAddressBook {
         }
         return false;
     }
-    //UC1 - Add Contact Details of Person
+    //UC2 - Add Contact Details of Person
     public void addDetails() {
         System.out.println("\n <<<<<<<Add contact details >>>>>");
         if(!checkName()) {
