@@ -90,7 +90,7 @@ class MultipleAddressBook {
     public MultipleAddressBook(String addressBookName) {
         this.addressBookName = addressBookName;
     }
-    //Check Duplicate Name
+    //UC 7 Check Duplicate Name in a Paticular AddressBook
     public boolean checkName() {
         System.out.print("Enter First Name ");
         firstName = input.next();
@@ -205,7 +205,7 @@ public class AddressBook {
             bookNumber = Integer.parseInt(scanner.next());
         }
     }
-    //Select Option.
+    //Refactor code and Select Option.
     public static void selectOption() {
         String check = "y";
         while (check.equalsIgnoreCase("Y")) {
@@ -221,7 +221,7 @@ public class AddressBook {
                     addressBook.get(bookNumber).addDetails();
                     break;
                 case 2 :
-                    System.out.print("Do you want to Edit Contact ? (y/n)");
+                    System.out.print("Want to Edit Contact ? (y/n)");
                     check=scanner.next();
                     if (check.equals("y") || check.equals("Y")) {
                         addressBook.get(bookNumber).editDetails();
