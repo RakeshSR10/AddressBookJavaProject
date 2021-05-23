@@ -132,9 +132,21 @@ public class AddressBook {
         System.out.print("Enter Email ");
         email = scanner.next();
     }
+    //UC4 - Delete Contact Details of Person
+    private void deleteDetails() {
+        System.out.println("Enter Name to be deleted.:");
+        String removeName = scanner.next();
+        if (removeName.equalsIgnoreCase(firstName)) {
+            list.removeAll(list);
+            System.out.println("Successfully Deleted...!");
+        } else {
+            System.out.println("Invalid Contact.....! Re-enter Name");
+        }
+    }
     public static void main(String[] args) {
         AddressBook addressBook = new AddressBook();
         addressBook.addDetails();
         addressBook.editDetails();
+        addressBook.deleteDetails();
     }
 }
