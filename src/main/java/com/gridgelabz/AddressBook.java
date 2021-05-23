@@ -1,6 +1,7 @@
 package com.gridgelabz;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Contact {
     //UC1 - Creating contact
@@ -24,7 +25,7 @@ class Contact {
         this.email = email;
     }
     //getter and setter method
-    public String getFirstName() {
+    public static String getFirstName() {
         return this.firstName;
     }
 
@@ -218,6 +219,7 @@ public class AddressBook {
         System.out.println("4: View Person in State");
         System.out.println("5: By Counting Total Persons in City");
         System.out.println("6: By Counting Total Persons in State");
+        System.out.println("7: Sort Persons by Alphabetically.");
         String choose=scanner.next();
         switch (choose) {
             case "1" :
@@ -237,6 +239,9 @@ public class AddressBook {
                 break;
             case "6" :
                 setPersonStateCount();
+                break;
+            case "7" :
+                sortPersonByAlphabetically();
                 break;
             default :
                 System.out.println("Invalid Input....!Try Again..");
@@ -303,6 +308,13 @@ public class AddressBook {
         stateCount.stream().distinct()
                 .forEach(placeName -> System.out.println("Number of People from " + placeName + " is : " + stateCount.stream()
                         .filter(n1 -> n1.equals(placeName)).count()));
+    }
+    //UC 11 - Sort Persons Name By Alphabetically
+    public static void sortPersonByAlphabetically() {
+        List<AddressBook> sortedName = addressBook.stream()
+                .sorted(Comparator.comparing(AddressBook::getFirstName))
+                .collect(Collectors.toList());
+        sortedName.forEach(System.out::println);
     }
     //Refactor code and Select Option.
     public static void selectOption() {
