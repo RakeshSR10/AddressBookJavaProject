@@ -86,10 +86,6 @@ class MultipleAddressBook {
     public String firstName, lastName, address, city, state, email, zip, phone;
     public Scanner input = new Scanner(System.in);
 
-    //UC 8
-    public static Map<String, String> dictionaryCity=new HashMap<>();
-    public static Map<String, String> dictionaryState=new HashMap<>();
-
     //UC 6 - MultipleAddressBook
     public MultipleAddressBook(String addressBookName) {
         this.addressBookName = addressBookName;
@@ -189,6 +185,9 @@ public class AddressBook {
     private static int bookNumber = 0;
     private static String firstName,lastName,address,city,state,zip,phone,email;
     public static ArrayList<MultipleAddressBook> addressBookDetails=new ArrayList<>();
+    //UC 8
+    public static Map<String, String> dictionaryCity=new HashMap<>();
+    public static Map<String, String> dictionaryState=new HashMap<>();
 
     public static void addAddressBookDetails() {
         System.out.print("Enter Name of Address Book = ");
@@ -211,8 +210,10 @@ public class AddressBook {
     }
     public static void search() {
         System.out.println("Choose Option");
-        System.out.println("1: By City Name" );
-        System.out.println("2: By State Name");
+        System.out.println("1: Search By City Name" );
+        System.out.println("2: Search By State Name");
+        System.out.println("3: View Person in City");
+        System.out.println("4: View Person in State");
         String choose=scanner.next();
         switch (choose) {
             case "1" :
@@ -220,6 +221,12 @@ public class AddressBook {
                 break;
             case "2":
                 searchPersonByState();
+                break;
+            case "3" :
+                viewPersonByCityInDict();
+                break;
+            case "4" :
+                viewPersonByStateInDict();
                 break;
             default :
                 System.out.println("Invalid Input....!Try Again..");
@@ -243,6 +250,28 @@ public class AddressBook {
         addressBook.forEach(address -> address.list.stream()
                 .filter(contact -> contact.getCity().equals(city))
                 .forEach(System.out::println));
+    }
+    //UC 9 - View persons by City or State
+    private static void viewPersonByCityInDict() {
+        System.out.println("Enter City Name");
+        city=scanner.next();
+
+        addressBook.forEach(address -> address.list.stream()
+                .filter(contact -> contact.getCity().equals(city))
+                .forEach(contact -> dictionaryCity.put((contact.getFirstName() + " " + contact.getLastName()), contact.getCity())));
+
+        dictionaryCity.forEach((key, value) -> System.out.println("Name "+key));
+    }
+
+    private static void viewPersonByStateInDict() {
+        System.out.println("Enter State Name");
+        state=scanner.next();
+
+        addressBook.forEach(address -> address.list.stream()
+                .filter(contact -> contact.getState().equals(state))
+                .forEach(contact -> dictionaryState.put((contact.getFirstName() + " " + contact.getLastName()), contact.getState())));
+
+        dictionaryState.forEach((key, value) -> System.out.println("Name "+key));
     }
     //Refactor code and Select Option.
     public static void selectOption() {
@@ -299,7 +328,6 @@ public class AddressBook {
         while (true){
             addAddressBookDetails();
             selectOption();
-
             System.out.println("<<<<<<<Search Contacts by City or State>>>>>>>>?");
             System.out.println("Press y if You Want to Search");
             String searchInput=scanner.next();
