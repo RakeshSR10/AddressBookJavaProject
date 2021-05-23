@@ -86,6 +86,10 @@ class MultipleAddressBook {
     public String firstName, lastName, address, city, state, email, zip, phone;
     public Scanner input = new Scanner(System.in);
 
+    //UC 8
+    public static Map<String, String> dictionaryCity=new HashMap<>();
+    public static Map<String, String> dictionaryState=new HashMap<>();
+
     //UC 6 - MultipleAddressBook
     public MultipleAddressBook(String addressBookName) {
         this.addressBookName = addressBookName;
@@ -205,6 +209,41 @@ public class AddressBook {
             bookNumber = Integer.parseInt(scanner.next());
         }
     }
+    public static void search() {
+        System.out.println("Choose Option");
+        System.out.println("1: By City Name" );
+        System.out.println("2: By State Name");
+        String choose=scanner.next();
+        switch (choose) {
+            case "1" :
+                searchPersonByCity();
+                break;
+            case "2":
+                searchPersonByState();
+                break;
+            default :
+                System.out.println("Invalid Input....!Try Again..");
+        }
+    }
+    //UC 8 - Refactor : By using Stream functions
+    public static void searchPersonByCity() {
+
+        System.out.println("Enter State Name");
+        state = scanner.next();
+
+        addressBook.forEach(address -> address.list.stream()
+                .filter(contact -> contact.getState().equals(state))
+                .forEach(System.out::println));
+    }
+
+    public static void searchPersonByState() {
+        System.out.println("Enter City Name");
+        city = scanner.next();
+
+        addressBook.forEach(address -> address.list.stream()
+                .filter(contact -> contact.getCity().equals(city))
+                .forEach(System.out::println));
+    }
     //Refactor code and Select Option.
     public static void selectOption() {
         String check = "y";
@@ -255,7 +294,28 @@ public class AddressBook {
         }
     }
     public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
-        addressBook.selectOption();
+        System.out.println("Welcome to Address Book");
+        String check;
+        while (true){
+            addAddressBookDetails();
+            selectOption();
+
+            System.out.println("<<<<<<<Search Contacts by City or State>>>>>>>>?");
+            System.out.println("Press y if You Want to Search");
+            String searchInput=scanner.next();
+            if (searchInput.equalsIgnoreCase("y"))
+            {
+                search();
+            }else if(searchInput.equalsIgnoreCase("n")){
+                System.out.println("You Can Proceed Further");
+            }else {
+                System.out.println("Wrong input! Proceed further" );
+            }
+
+            System.out.print("Want to Add More Address Book (y/n) ");
+            check = scanner.next();
+            if(check.equalsIgnoreCase("n"))
+                System.out.println("Okay! Thank You !!!");
+        }
     }
 }
