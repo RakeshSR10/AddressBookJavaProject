@@ -112,10 +112,29 @@ public class AddressBook {
         System.out.print("Enter Email ");
         email = scanner.next();
         list.add(new AddressBook(firstName, lastName, address, city, state, zip, phone, email));
-
+    }
+    //UC3 - Edit Contact Details of Person
+    public void editDetails() {
+        System.out.print("Enter First Name ");
+        firstName = scanner.next();
+        System.out.print("Enter Last Name ");
+        lastName = scanner.next();
+        System.out.print("Enter Address ");
+        address = scanner.next();
+        System.out.print("Enter City ");
+        city = scanner.next();
+        System.out.print("Enter State ");
+        state = scanner.next();
+        System.out.print("Enter Zip ");
+        zip = scanner.next();
+        System.out.print("Enter Phone Number ");
+        phone = scanner.next();
+        System.out.print("Enter Email ");
+        email = scanner.next();
     }
     public static void main(String[] args) {
         AddressBook addressBook = new AddressBook();
         addressBook.addDetails();
+        addressBook.editDetails();
     }
 }
