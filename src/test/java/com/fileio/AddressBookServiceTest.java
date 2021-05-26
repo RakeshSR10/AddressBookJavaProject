@@ -27,9 +27,18 @@ public class AddressBookServiceTest {
     }
     //UC 16 - Refactor and Retrieve data of addressbook DB table
     @Test
-    public void givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount() {
+    public void givenAddressBookInDB_WhenRetrieved_ShouldMatchContactCount() {
         AddressBookService addressBookService = new AddressBookService();
         List<AddressBookData> addressBookData = addressBookService.readAddressBookData(DB_IO);
         Assertions.assertEquals(2,addressBookData.size());
+    }
+    //UC 17 - Update lastName from addressbook table
+    @Test
+    public void giveNewLastNameForEmployee_WhenUpdated_ShouldSyncWithDB() {
+        AddressBookService addressBookService = new AddressBookService();
+        List<AddressBookData> addressBookData = addressBookService.readAddressBookData(DB_IO);
+        addressBookService.updateContactLastName("Rakesh", "SR");
+        boolean result = addressBookService.checkAddressBookInSyncWithDB("Rakesh");
+        Assertions.assertTrue(result);
     }
 }
