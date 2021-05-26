@@ -5,7 +5,7 @@ import java.util.*;
 public class AddressBookService {
     //UC 13 -
     public enum IOService {
-        CONSOLE_IO, FILE_IO
+        CONSOLE_IO, FILE_IO, DB_IO
     }
     private List<AddressBookData> addressBooklist;
     public AddressBookService() {}
@@ -48,8 +48,14 @@ public class AddressBookService {
             new AddressBookFileIOService().writeData(addressBooklist);
         }
     }
+    //UC 16 -Retrieve Address Book data from DB
+    public List<AddressBookData> readAddressBookData(IOService ioService){
+        if(ioService.equals(IOService.DB_IO))
+            this.addressBooklist = new AddressBookDBService().readData();
+        return this.addressBooklist;
+    }
     //UC 13 - Read AddressBookData
-    public long readAddressBookData(IOService ioService) {
+    public long readAddressBookData1(IOService ioService) {
         if(ioService.equals(IOService.FILE_IO))
             this.addressBooklist = new AddressBookFileIOService().readData();
         return addressBooklist.size();

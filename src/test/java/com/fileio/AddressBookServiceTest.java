@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static com.fileio.AddressBookService.IOService.DB_IO;
 import static com.fileio.AddressBookService.IOService.FILE_IO;
 
 public class AddressBookServiceTest {
@@ -23,5 +25,11 @@ public class AddressBookServiceTest {
         System.out.println("Total Number of Entries : "+entries);
         Assertions.assertEquals(2,entries);
     }
-
+    //UC 16 - Refactor and Retrieve data of addressbook DB table
+    @Test
+    public void givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount() {
+        AddressBookService addressBookService = new AddressBookService();
+        List<AddressBookData> addressBookData = addressBookService.readAddressBookData(DB_IO);
+        Assertions.assertEquals(2,addressBookData.size());
+    }
 }

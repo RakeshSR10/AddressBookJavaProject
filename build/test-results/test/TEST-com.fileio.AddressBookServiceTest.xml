@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.fileio.AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-23T14:44:04" hostname="RAKESH" time="0.096">
+<testsuite name="com.fileio.AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-26T03:00:13" hostname="RAKESH" time="0.367">
   <properties/>
-  <testcase name="given2AddressBookWhenWrittenToFileShouldMatchAddressBookEntries()" classname="com.fileio.AddressBookServiceTest" time="0.096"/>
-  <system-out><![CDATA[AddressBookData{firstName='Rakesh', lastName='SR', address='Siddanuru', city='Davanagere', state='Karnataka', phoneNumber='9874563210', zip='123456', email='rakesh@gmail.com'}
-AddressBookData{firstName='Vishnu', lastName='Dada', address='Mysore-Area', city='Mysore', state='Karnataka', phoneNumber='9856471230', zip='221133', email='vishnu@gmail.com'}
-Total Number of Entries : 2
+  <testcase name="givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount()" classname="com.fileio.AddressBookServiceTest" time="0.367"/>
+  <system-out><![CDATA[Connecting to database...!!!!    jdbc:mysql://localhost:3306/addressbook_service?useSSL=false
+Connection is Successfull.....!   com.mysql.jdbc.JDBC4Connection@638871fd
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
