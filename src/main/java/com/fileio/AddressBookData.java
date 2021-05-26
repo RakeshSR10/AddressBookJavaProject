@@ -30,8 +30,8 @@ public class AddressBookData {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", zip='" + zip + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", zip=" + zip +
                 ", email='" + email + '\'' +
                 '}';
     }
