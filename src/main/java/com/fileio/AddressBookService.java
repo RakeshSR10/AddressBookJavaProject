@@ -8,6 +8,7 @@ public class AddressBookService {
         CONSOLE_IO, FILE_IO, DB_IO
     }
     private List<AddressBookData> addressBooklist;
+    private static AddressBookDBService addressBookDBService;//Singleton
     public AddressBookService() {}
     public AddressBookService(List<AddressBookData> addressBooklist) {
         this.addressBooklist = addressBooklist;
@@ -53,6 +54,25 @@ public class AddressBookService {
         if(ioService.equals(IOService.DB_IO))
             this.addressBooklist = new AddressBookDBService().readData();
         return this.addressBooklist;
+    }
+    //Uc 17 - Update Contact
+    public void updateContactLastName(String firstName, String lastName) {
+        String result = addressBookDBService.updateContactData(firstName,lastName);
+        if (result == "0") return;
+        AddressBookData addressBookData = this.getAddressBookData(firstName);
+        if (addressBookData != null) addressBookData.lastName = lastName;
+    }
+
+    public boolean checkAddressBookInSyncWithDB(String firstName) {
+        List<AddressBookData> addressBooklist = addressBookDBService.getAddressBookData(firstName);
+        return addressBooklist.get(0).equals(getAddressBookData(firstName));
+    }
+
+    private AddressBookData getAddressBookData(String firstName) {
+        return this.addressBooklist.stream()
+                .filter(addressBookDataItem -> addressBookDataItem.firstName.equals(firstName))
+                .findFirst()
+                .orElse(null);
     }
     //UC 13 - Read AddressBookData
     public long readAddressBookData1(IOService ioService) {
